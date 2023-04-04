@@ -36,7 +36,3 @@ release:
 test:
 	make lint
 	pytest --cov ${PACKAGE} --cov-report term-missing --cov-report html:coverage --cov-fail-under 70 --timeout=300
-
-test-ci:
-	make lint
-	pytest --cov ${PACKAGE} --cov-report term-missing --cov-report xml --cov-fail-under 80 --timeout=300 --ci

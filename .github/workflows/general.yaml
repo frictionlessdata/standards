@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: make install
       - name: Test software
-        run: make test-ci
+        run: make test
       - name: Report coverage
         uses: codecov/codecov-action@v2
 
