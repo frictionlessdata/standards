@@ -1,0 +1,29 @@
+brand:
+  text: Frictionless Standards
+about:
+  text: Lightweight yet comprehensive data standards as Data Package and Table Schema
+site:
+  favicon: assets/logo.png
+  styles:
+    - style.css
+github:
+  user: frictionlessdata
+  repo: standards
+counter:
+  type: plausible
+  code: standards.frictionlessdata.io
+topics:
+  selector: h2
+links:
+  items:
+    - name: Open Knowledge
+      path: https://okfn.org
+    - name: Frictionless
+      path: https://frictionlessdata.io
+    - name: Support
+      path: https://join.slack.com/t/frictionlessdata/shared_invite/zt-17kpbffnm-tRfDW_wJgOw8tJVLvZTrBg
+pages:
+  items:
+    - path: index
+      name: Introduction
+      from: README.md

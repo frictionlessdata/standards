@@ -1,0 +1,12 @@
+{
+  "include": [
+    "standards",
+    "tests"
+  ],
+  "strict": [
+    "standards/**/*.*"
+  ],
+  "ignore": [
+    "**/__init__.py"
+  ]
+}
