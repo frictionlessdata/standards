@@ -1,39 +1,40 @@
 from __future__ import annotations
-from typing import List, Any, Dict
-from typing_extensions import Required, TypedDict, Literal
-from .dialect import IDialect
-from .schema import ISchema
+from typing import List, Any, Dict, Optional
+from typing_extensions import Literal
+from .model import Model
+from .dialect import Dialect
+from .schema import Schema
 
 
-class IResource(TypedDict, total=False):
-    name: Required[str]
-    #  type: required
-    title: str
-    description: str
-    path: str
-    data: Any
-    scheme: str
-    format: str
-    compression: str
-    extrapaths: List[str]
-    innerpath: str
-    encoding: str
-    dialect: IDialect
+class Resource(Model):
+    name: str
+    type: str
+    title: Optional[str] = None
+    description: Optional[str] = None
+    path: Optional[str] = None
+    data: Optional[Any] = None
+    scheme: Optional[str] = None
+    format: Optional[str] = None
+    compression: Optional[str] = None
+    extrapaths: Optional[List[str]] = None
+    innerpath: Optional[str] = None
+    encoding: Optional[str] = None
+    dialect: Optional[Dialect] = None
 
 
-class IFileResource(IResource, total=False):
-    type: Required[Literal["file"]]
+class FileResource(Resource):
+    type: Literal["file"]
 
 
-class ITextResource(IResource, total=False):
-    type: Required[Literal["text"]]
+class TextResource(Resource):
+    type: Literal["text"]
 
 
-class IJsonResource(IResource, total=False):
-    type: Required[Literal["json"]]
-    schema: Dict[str, Any]  # Json Schema
+class JsonResource(Resource):
+    type: Literal["json"]
+    _schema: Optional[Dict[str, Any]] = None  # Json Schema
 
 
-class ITableResource(IResource, total=False):
-    type: Required[Literal["table"]]
-    schema: ISchema  # Table Schema
+class TableResource(Resource):
+    type: Literal["table"]
+    _schema: Optional[Schema] = None  # Table Schema

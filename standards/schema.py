@@ -1,102 +1,102 @@
 from __future__ import annotations
-from typing import Dict, List, Literal, Any
-from typing_extensions import Required, TypedDict
+from typing import Dict, List, Literal, Any, Optional
+from .model import Model
 
 
-class ISchema(TypedDict, total=False):
+class Field(Model):
     name: str
     type: str
-    title: str
-    description: str
-    fields: Required[List[IField]]
-    missingValues: List[str]
-    primary_key: List[str]
-    foreign_keys: List[IForeignKey]
+    title: Optional[str] = None
+    description: Optional[str] = None
+    format: Optional[str] = None
+    missingValues: Optional[List[str]] = None
 
 
-class IField(TypedDict, total=False):
-    name: Required[str]
-    #  type: required
-    title: str
-    description: str
-    format: str
-    missingValues: List[str]
+class AnyField(Field):
+    type: Literal["any"]
 
 
-class IAnyField(IField, total=False):
-    type: Required[Literal["any"]]
-
-
-class IArrayField(IField, total=False):
-    type: Required[Literal["array"]]
+class ArrayField(Field):
+    type: Literal["array"]
     # support json/csv format
-    arrayItem: Dict[str, Any]
+    arrayItem: Optional[Dict[str, Any]] = None
 
 
-class IBooleanField(IField, total=False):
-    type: Required[Literal["boolean"]]
-    trueValues: List[str]
-    falseValues: List[str]
+class BooleanField(Field):
+    type: Literal["boolean"]
+    trueValues: Optional[List[str]] = None
+    falseValues: Optional[List[str]] = None
 
 
-class IDateField(IField, total=False):
-    type: Required[Literal["date"]]
+class DateField(Field):
+    type: Literal["date"]
 
 
-class IDatetimeField(IField, total=False):
-    type: Required[Literal["datetime"]]
+class DatetimeField(Field):
+    type: Literal["datetime"]
 
 
-class IDurationField(IField, total=False):
-    type: Required[Literal["duration"]]
+class DurationField(Field):
+    type: Literal["duration"]
 
 
-class IGeojsonField(IField, total=False):
-    type: Required[Literal["geojson"]]
+class GeojsonField(Field):
+    type: Literal["geojson"]
 
 
-class IGeopointField(IField, total=False):
-    type: Required[Literal["geopoint"]]
+class GeopointField(Field):
+    type: Literal["geopoint"]
 
 
-class IIntegerField(IField, total=False):
-    type: Required[Literal["integer"]]
-    bareNumber: bool
-    groupChar: str
+class IntegerField(Field):
+    type: Literal["integer"]
+    bareNumber: Optional[bool] = None
+    groupChar: Optional[str] = None
 
 
-class INumberField(IField, total=False):
-    type: Required[Literal["number"]]
-    bareNumber: bool
-    groupChar: str
-    decimalChar: str
+class NumberField(Field):
+    type: Literal["number"]
+    bareNumber: Optional[bool] = None
+    groupChar: Optional[str] = None
+    decimalChar: Optional[str] = None
 
 
-class IObjectField(IField, total=False):
-    type: Required[Literal["object"]]
+class ObjectField(Field):
+    type: Literal["object"]
 
 
-class IStringField(IField, total=False):
-    type: Required[Literal["string"]]
+class StringField(Field):
+    type: Literal["string"]
 
 
-class ITimeField(IField, total=False):
-    type: Required[Literal["time"]]
+class TimeField(Field):
+    type: Literal["time"]
 
 
-class IYearField(IField, total=False):
-    type: Required[Literal["year"]]
+class YearField(Field):
+    type: Literal["year"]
 
 
-class IYearmonthField(IField, total=False):
-    type: Required[Literal["yearmonth"]]
+class YearmonthField(Field):
+    type: Literal["yearmonth"]
 
 
-class IForeignKey(TypedDict, total=False):
-    fields: Required[List[str]]
-    reference: IForeignKeyReference
+class ForeignKeyReference(Model):
+    fields: List[str]
+    resource: str
 
 
-class IForeignKeyReference(TypedDict, total=False):
-    fields: Required[List[str]]
-    resource: Required[str]
+class ForeignKey(Model):
+    fields: List[str]
+    reference: Optional[ForeignKeyReference] = None
+
+
+class Schema(Model):
+    name: Optional[str] = None
+    type: Optional[str] = None
+    title: Optional[str] = None
+    description: Optional[str] = None
+    fields: List[Field]
+    missingValues: Optional[List[str]] = None
+    primary_key: Optional[List[str]] = None
+    foreign_keys: Optional[List[ForeignKey]] = None
