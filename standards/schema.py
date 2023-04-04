@@ -98,5 +98,5 @@ class Schema(Model):
     description: Optional[str] = None
     fields: List[Field]
     missingValues: Optional[List[str]] = None
-    primary_key: Optional[List[str]] = None
-    foreign_keys: Optional[List[ForeignKey]] = None
+    primaryKey: Optional[List[str]] = None
+    foreignKeys: Optional[List[ForeignKey]] = None
