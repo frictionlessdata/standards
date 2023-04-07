@@ -32,6 +32,9 @@ class TextResource(Resource):
 
 class JsonResource(Resource):
     type: Literal["json"]
+    # TODO: shall it be called "jsonSchema" to avoid confusion with Table Schema?
+    # If yes -- we can support other schemas for other type of resources more
+    # explicit way like `recapSchema` etc
     _schema: Optional[Dict[str, Any]] = None  # Json Schema
 
 
