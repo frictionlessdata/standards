@@ -34,7 +34,8 @@ class JsonResource(Resource):
     type: Literal["json"]
     # TODO: shall it be called "jsonSchema" to avoid confusion with Table Schema?
     # If yes -- we can support other schemas for other type of resources more
-    # explicit way like `recapSchema` etc
+    # explicit way like `recapSchema` etc (for example if a table resource wants to provide
+    # a different type of schema or a few of theme -- why not?)
     _schema: Optional[Dict[str, Any]] = None  # Json Schema
 
 
