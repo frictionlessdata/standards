@@ -18,7 +18,7 @@ def read(*paths):
 
 
 PACKAGE = "standards"
-NAME = 'frictionless-standards'
+NAME = "frictionless-standards"
 TESTS_REQUIRE = [
     "black",
     "pylama",
